@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.ClothDictMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothDict" >
+		<!--<id column="ID" property="id" jdbcType="VARCHAR" />  -->
+		<result column="DICTID" property="dictid" jdbcType="VARCHAR" />
+		<result column="DICTCODE" property="dictcode" jdbcType="VARCHAR" />
+		<result column="DICTNAME" property="dictname" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+       <!-- ID, -->DICTID, DICTCODE, DICTNAME
+	</sql>
+	<!-- 添加字典 -->
+	<insert id="insertAppClothDict" parameterType="com.cn.zyrs.domain.AppClothDict" >
+	    insert into APP_ClothDict (DICTID, DICTCODE, DICTNAME)
+	    values (newid(), #{dictcode,jdbcType=VARCHAR}, #{dictname,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 删除字典-->
+	<delete id="deleteAppClothDict" parameterType="java.lang.String" >
+        delete from APP_ClothDict where dictid = #{dictid,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 修改字典 -->
+	 
+	<update id="updateAppClothDict" parameterType="com.cn.zyrs.domain.AppClothDict" >
+        update APP_ClothModel set dictcode = #{dictcode,jdbcType=VARCHAR},dictname = #{dictname,jdbcType=VARCHAR} where dictid = #{dictid,jdbcType=VARCHAR}
+    <!-- 
+		<set >
+		    <if test="dictcode != null" >
+               dictcode = #{dictcode,jdbcType=VARCHAR},
+			</if>
+			<if test="dictname != null" >
+               dictname = #{dictname,jdbcType=VARCHAR}
+			</if>
+		</set>
+		 where dictid = #{dictid,jdbcType=VARCHAR}
+         -->
+	</update>
+	
+	<!-- 查询全部字典 -->
+	<select id="getAppClothDict" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothDict">
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothDict where 1=1  <!--and dictcode = #{dictcode,jdbcType=VARCHAR} and dictname = #{dictname,jdbcType=VARCHAR}  -->
+    	<if test="dictid != null and dictid!=''">
+              and dictid = #{dictid,jdbcType=VARCHAR}
+		</if>
+         <if test="dictcode != null and dictcode!=''">
+              and dictcode = #{dictcode,jdbcType=VARCHAR}
+		</if>
+		<if test="dictname != null and dictname!=''" >
+              and dictname = #{dictname,jdbcType=VARCHAR}
+		</if>
+		
+		
+	</select>
+	
+</mapper>

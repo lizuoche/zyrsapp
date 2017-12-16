@@ -1,0 +1,104 @@
+package com.cn.zyrs.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothMainModel;
+import com.cn.zyrs.domain.AppClothPart;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothMainService;
+import com.cn.zyrs.service.AppClothPartService;
+
+@Controller
+@RequestMapping("/clothmainmodel")
+public class AppClothMainModelController {
+
+	Logger log = Logger.getLogger(AppClothMainModelController.class);
+	@Resource(name = "clothMainModelervice")
+	private AppClothMainService clothMainService;
+	
+	//查询所有服装部位
+	@ResponseBody
+	@RequestMapping("/getClothMainModel")
+	public ResultJsonBean getClothMainModel(HttpServletRequest request,HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothMainModel colthMainModel = new AppClothMainModel();
+        List<AppClothMainModel> colthMainModelist = this.clothMainService.getAllAppClothMainModel(colthMainModel, null, null);
+		rjb = new ResultJsonBean(true, colthMainModelist, "1", "服装主模型查询成功！");
+		return rjb;
+    }
+    
+	//增加新的主模型
+	@ResponseBody
+	@RequestMapping("/addClothMainModel")
+	public ResultJsonBean addClothMainModel(HttpServletRequest request, HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothMainModel colthMainModel = new AppClothMainModel();
+		
+	        // 入参
+			String clothmainmodelcnname = request.getParameter("clothmainmodelcnname");
+			String clothmainmodelengname = request.getParameter("clothmainmodelengname");
+			String cmmbyclothclass = request.getParameter("cmmbyclothclass");
+			String cmmplatform = request.getParameter("cmmplatform");
+			String clothmainmodelname = request.getParameter("clothmainmodelname");
+	        String clothmainmodelurl = request.getParameter("clothmainmodelurl");
+	        String clothmainmodelmd5 = request.getParameter("clothmainmodelmd5");
+			String cmmimagename = request.getParameter("cmmimagename");
+			String cmmimageurl = request.getParameter("cmmimageurl");
+			String cmmimagemd5 = request.getParameter("cmmimagemd5");
+			String cmmistrue = request.getParameter("cmmistrue");
+	        
+	        
+	        
+			colthMainModel.setClothmainmodelcnname(clothmainmodelcnname);
+			colthMainModel.setClothmainmodelengname(clothmainmodelengname);
+			colthMainModel.setCmmbyclothclass(cmmbyclothclass);
+			colthMainModel.setCmmplatform(cmmplatform);
+			colthMainModel.setClothmainmodelname(clothmainmodelname);
+			colthMainModel.setClothmainmodelurl(clothmainmodelurl);
+			colthMainModel.setClothmainmodelmd5(clothmainmodelmd5);
+			colthMainModel.setCmmimagename(cmmimagename);
+			colthMainModel.setCmmimageurl(cmmimageurl);
+			colthMainModel.setCmmimagemd5(cmmimagemd5);
+			colthMainModel.setCmmistrue(cmmistrue);
+			int res = -1;
+			res = this.clothMainService.addAppClothMainModel(colthMainModel);
+
+			if (res == 1) {
+				log.info("新增数据成功！");
+				rjb = new ResultJsonBean(true, res, "1", "新增数据成功！");
+			} else {
+				log.error("新增数据失败！");
+				rjb = new ResultJsonBean(false, res, "-1", "新增数据失败！");
+			}
+		return rjb;
+	}
+    
+	
+	
+	//删除主模型
+	@ResponseBody
+	@RequestMapping("/delClothMainModel")
+	public ResultJsonBean delClothPart(HttpServletRequest request,HttpServletResponse response) {
+		String clothMainId = request.getParameter("ids");
+		ResultJsonBean rjb = null;
+        int res1 = this.clothMainService.delAppClothMainModel(clothMainId);
+		if(res1==1){
+			log.info("删除成功！");
+			rjb = new ResultJsonBean(true, res1, "1", "删除成功！");
+			return rjb;
+		}else{
+			log.error("删除失败！");
+			rjb = new ResultJsonBean(false, res1, "-1", "删除失败！");
+			return rjb;
+		}
+    }
+}

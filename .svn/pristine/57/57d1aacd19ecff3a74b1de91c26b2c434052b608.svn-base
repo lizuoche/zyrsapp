@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+<mapper namespace="com.cn.zyrs.mapper.ClothDictMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothDict" >
+		<result column="DICTID" property="dictid" jdbcType="VARCHAR" />
+		<result column="DICTCODE" property="dictcode" jdbcType="VARCHAR" />
+		<result column="DICTNAME" property="dictname" jdbcType="VARCHAR" />
+	</resultMap>
+ -->
+<mapper namespace="com.cn.zyrs.mapper.ClothMainModelMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothMainModel" >
+		<result column="clothmainmodelid" property="clothmainmodelid" jdbcType="VARCHAR" />
+		<result column="clothmainmodelcnname" property="clothmainmodelcnname" jdbcType="VARCHAR" />
+		<result column="clothmainmodelengname" property="clothmainmodelengname" jdbcType="VARCHAR" />
+		<result column="cmmbyclothclass" property="cmmbyclothclass" jdbcType="VARCHAR" />
+		<result column="cmmplatform" property="cmmplatform" jdbcType="VARCHAR" />
+	    <result column="clothmainmodelname" property="clothmainmodelname" jdbcType="VARCHAR" />
+	    <result column="clothmainmodelurl" property="clothmainmodelurl" jdbcType="VARCHAR" />
+		<result column="clothmainmodelmd5" property="clothmainmodelmd5" jdbcType="VARCHAR" />
+		<result column="cmmimagename" property="cmmimagename" jdbcType="VARCHAR" />
+		<result column="cmmimageurl" property="cmmimageurl" jdbcType="VARCHAR" />
+		<result column="cmmimagemd5" property="cmmimagemd5" jdbcType="VARCHAR" />
+	    <result column="cmmistrue" property="cmmistrue" jdbcType="VARCHAR" />
+	</resultMap>
+	 
+	<sql id="Base_Column_List" >
+	       clothmainmodelid, 
+	       clothmainmodelcnname, 
+	       clothmainmodelengname, 
+	       cmmbyclothclass,
+	       cmmplatform,
+	       clothmainmodelname,
+	       clothmainmodelurl,
+	       clothmainmodelmd5,
+	       cmmimagename,
+	       cmmimageurl,
+	       cmmimagemd5,
+	       cmmistrue
+	</sql>
+	
+	<!-- 添加服装主模型 -->
+	
+    <insert id="insertAppClothMainModel" parameterType="com.cn.zyrs.domain.AppClothMainModel" >
+	    insert into APP_ClothMainModel(clothmainmodelid, 
+								       clothmainmodelcnname, 
+								       clothmainmodelengname, 
+								       cmmbyclothclass,
+								       cmmplatform,
+								       clothmainmodelname,
+								       clothmainmodelurl,
+								       clothmainmodelmd5,
+								       cmmimagename,
+								       cmmimageurl,
+								       cmmimagemd5,
+								       cmmistrue)
+	      values (newid(), 
+			      #{clothmainmodelcnname,jdbcType=VARCHAR},
+			      #{clothmainmodelengname,jdbcType=VARCHAR},
+			      #{cmmbyclothclass,jdbcType=VARCHAR}, 
+			      #{cmmplatform,jdbcType=VARCHAR},
+			      #{clothmainmodelname,jdbcType=VARCHAR},
+			      #{clothmainmodelurl,jdbcType=VARCHAR},
+			      #{clothmainmodelmd5,jdbcType=VARCHAR},
+			      #{cmmimagename,jdbcType=VARCHAR}, 
+			      #{cmmimageurl,jdbcType=VARCHAR},
+			      #{cmmimagemd5,jdbcType=VARCHAR},
+			      #{cmmistrue,jdbcType=VARCHAR}
+			      )
+	</insert>
+
+	<!-- 删除服装主模型-->
+	<delete id="deleteAppClothMainModel" parameterType="java.lang.String" >
+        delete from APP_ClothMainModel where clothmainmodelid = #{clothMainModelid,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 修改服装类型 -->
+	<!-- 
+	<update id="updateAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
+    update APP_ClothModel
+		<set >
+		     <if test="modelid != null" >
+               modelid = #{modelid,jdbcType=VARCHAR},
+			</if>
+			<if test="chinesename != null" >
+               chinesename = #{chinesename,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null" >
+               englishname = #{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclass != null" >
+        	   clothclass = #{clothclass,jdbcType=VARCHAR},
+			</if>
+			<if test="clothpart != null" >
+               clothpart = #{clothpart,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null" >
+        	   url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="istrue != null" >
+        	   istrue = #{istrue,jdbcType=VARCHAR},
+			</if>
+			<if test="limitsize != null" >
+               limitsize = #{limitsize,jdbcType=VARCHAR},
+			</if>
+		</set>
+         where modelid = #{modelid,jdbcType=VARCHAR}
+	</update>
+	 -->
+	<!-- 查询全部服装主模型-->
+	<select id="getAppClothMainModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothMainModel
+    where 1=1
+	</select>
+</mapper>

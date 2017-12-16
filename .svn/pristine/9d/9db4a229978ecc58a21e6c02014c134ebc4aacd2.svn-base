@@ -1,0 +1,45 @@
+package com.cn.zyrs.serviceimpl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
+
+import com.cn.zyrs.domain.AppClothDict;
+import com.cn.zyrs.mapper.ClothDictMapper;
+import com.cn.zyrs.service.AppClothDictService;
+
+@Service("clothDictService")
+public class AppClothDictServiceImpl implements AppClothDictService {
+	
+	@Resource(name = "clothDictMapper")
+	private ClothDictMapper clothDictMapper;
+	
+	//添加服装字典
+    @Override
+	public int addAppClothDict(AppClothDict appClothDict) {
+		return this.clothDictMapper.insertAppClothDict(appClothDict);
+
+	}
+
+    //删除服装类型
+	@Override
+	public int delAppClothDict(String clothDictId) {
+		return this.clothDictMapper.deleteAppClothDict(clothDictId);
+	}
+	
+	//修改服装类型
+	@Override
+	public int upAppClothDict(AppClothDict appClothDict) {
+		return this.clothDictMapper.updateAppClothDict(appClothDict);
+	}
+
+	//查询所有服装类型
+	@Override
+	public List<AppClothDict> getAllAppClothDict(@Param("dictcode")String dictcode, @Param("dictname")String dictname, String page, String di) {
+		System.out.println(dictcode+"ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+		return this.clothDictMapper.getAppClothDict(dictcode,dictname,page,di);
+	}
+}

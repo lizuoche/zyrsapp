@@ -1,0 +1,48 @@
+package com.cn.zyrs.serviceimpl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.zyrs.domain.AppClothQuantityBodySize;
+import com.cn.zyrs.mapper.ClothQuantityBodySizeMapper;
+import com.cn.zyrs.service.AppClothQuantityBodySizeService;
+
+@Service("clothQuantityBodySizeService")
+public class AppClothQuantityBodySizeImpl implements AppClothQuantityBodySizeService {
+	
+	@Resource(name = "clothQuantityBodySizeMapper")
+	private ClothQuantityBodySizeMapper clothQuantityBodySizeMapper;
+	
+	//添加量体信息
+    @Override
+	public int addAppClothQuantityBodySize(AppClothQuantityBodySize appClothQuantityBodySize) {
+		return this.clothQuantityBodySizeMapper.insertAppClothQuantityBodySize(appClothQuantityBodySize);
+    }
+
+//    //删除量体信息
+//	@Override
+//	public int delAppClothQuantityBodySize(String clothLtxxId) {
+//		return this.clothQuantityBodySizeMapper.deleteAppClothQuantityBodySize(clothLtxxId);
+//	}
+	
+//	//修改量体信息
+//	@Override
+//	public int upAppClothQuantityBodySize(AppClothQuantityBodySize appClothQuantityBodySize) {
+//		return this.clothQuantityBodySizeMapper.updateAppClothQuantityBodySize(appClothQuantityBodySize);
+//	}
+
+	//查询所有量体信息
+//	@Override
+//	public List<AppClothQuantityBodySize> getAllAppClothQuantityBodySize(AppClothQuantityBodySize appClothQuantityBodySize, String page, String di) {
+//		return this.clothQuantityBodySizeMapper.getAppClothQuantityBodySize(appClothQuantityBodySize,page,di);
+//	}
+	
+//	//根据id查询量体信息
+//	@Override
+//	public List<AppClothQuantityBodySize> getAllAppClothQuantityBodySizeById(String clothLtxxId) {
+//		return this.clothQuantityBodySizeMapper.getAppClothQuantityBodySizeById(clothLtxxId);
+//	}
+}

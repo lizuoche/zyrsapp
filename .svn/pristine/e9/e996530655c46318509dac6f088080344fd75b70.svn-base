@@ -1,0 +1,30 @@
+package com.cn.zyrs.serviceimpl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.zyrs.domain.AppClothStoreFabric;
+import com.cn.zyrs.mapper.ClothStoreFabricMapper;
+import com.cn.zyrs.service.AppClothStoreFabricService;
+
+@Service("clothStoreFabricService")
+public class AppClothStoreFabricImpl implements AppClothStoreFabricService {
+	
+	@Resource(name = "clothStoreFabricMapper")
+	private ClothStoreFabricMapper clothStoreFabricMapper;
+	
+	//修改服装面料
+	@Override
+	public int upAppClothStoreFabric(AppClothStoreFabric appClothStoreFabric) {
+		return this.clothStoreFabricMapper.updateAppClothStoreFabric(appClothStoreFabric);
+	}
+
+	//查询所有服装面料
+	@Override
+	public List<AppClothStoreFabric> getAllAppClothStoreFabric(AppClothStoreFabric appClothStoreFabric, String page, String di) {
+		return this.clothStoreFabricMapper.getAppClothStoreFabric(appClothStoreFabric,page,di);
+	}
+}

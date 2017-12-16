@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.ClothButtonMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothButton" >
+		<result column="clothbuttonid" property="clothbuttonid" jdbcType="VARCHAR" />
+		<result column="clothbuttoncnname" property="clothbuttoncnname" jdbcType="VARCHAR" />
+		<result column="clothbuttonengname" property="clothbuttonengname" jdbcType="VARCHAR" />
+		<result column="clothbuttonbyclothclass" property="clothbuttonbyclothclass" jdbcType="VARCHAR" />
+		<result column="clothbuttoncnpartname" property="clothbuttoncnpartname" jdbcType="VARCHAR" />
+	    <result column="clothbuttonbyclothpart" property="clothbuttonbyclothpart" jdbcType="VARCHAR" />
+	    <result column="clothbuttonname" property="clothbuttonname" jdbcType="VARCHAR" />
+		<result column="clothbuttonmorg" property="clothbuttonmorg" jdbcType="VARCHAR" />
+		<result column="clothbuttonistrue" property="clothbuttonistrue" jdbcType="VARCHAR" />
+		<result column="clothbuttonimagename" property="clothbuttonimagename" jdbcType="VARCHAR" />
+		<result column="clothbuttonimageurl" property="clothbuttonimageurl" jdbcType="VARCHAR" />
+	    <result column="clothbuttonimagemd5" property="clothbuttonimagemd5" jdbcType="VARCHAR" />
+	    <result column="clothbuttonplatform" property="clothbuttonplatform" jdbcType="VARCHAR" />
+	    <result column="clothbuttonscreenresolution" property="clothbuttonscreenresolution" jdbcType="VARCHAR" />
+	</resultMap>
+	 
+	<sql id="Base_Column_List" >
+	       clothbuttonid, 
+	       clothbuttoncnname, 
+	       clothbuttonengname, 
+	       clothbuttonbyclothclass,
+	       clothbuttoncnpartname,
+	       clothbuttonname,
+	       clothbuttonmorg,
+	       clothbuttonistrue,
+	       clothbuttonimagename,
+	       clothbuttonimageurl,
+	       clothbuttonimagemd5,
+	       clothbuttonplatform,
+	       clothbuttonscreenresolution
+	</sql>
+	
+	<!-- 添加服装风格 -->
+    <insert id="insertAppClothButton" parameterType="com.cn.zyrs.domain.AppClothButton" >
+		   insert into APP_ClothStyle (clothbuttonid, 
+								       clothbuttoncnname, 
+								       clothbuttonengname, 
+								       clothbuttonbyclothclass,
+								       clothbuttoncnpartname,
+								       clothbuttonname,
+								       clothbuttonmorg,
+								       clothbuttonistrue,
+								       clothbuttonimagename,
+								       clothbuttonimageurl,
+								       clothbuttonimagemd5,
+								       clothbuttonplatform,
+								       clothbuttonscreenresolution)
+	      values (newid(), 
+			      #{clothbuttoncnname,jdbcType=VARCHAR},
+			      #{clothbuttonengname,jdbcType=VARCHAR},
+			      #{clothstyleengname,jdbcType=VARCHAR},
+			      #{clothstylebyclothclass,jdbcType=VARCHAR}, 
+			      #{clothbuttoncnpartname,jdbcType=VARCHAR},
+			      #{clothbuttonname,jdbcType=VARCHAR},
+			      #{clothbuttonmorg,jdbcType=VARCHAR},
+			      #{clothbuttonistrue,jdbcType=VARCHAR},
+			      #{clothstyleistrue,jdbcType=VARCHAR}, 
+			      #{clothbuttonimagename,jdbcType=VARCHAR},
+			      #{clothbuttonimageurl,jdbcType=VARCHAR},
+			      #{clothbuttonimagemd5,jdbcType=VARCHAR},
+			      #{clothbuttonplatform,jdbcType=VARCHAR},
+			      #{clothbuttonscreenresolution,jdbcType=VARCHAR}
+			      )
+	</insert>
+
+	<!-- 删除服装类型-->
+	<delete id="deleteAppClothButton" parameterType="java.lang.String" >
+        delete from APP_ClothButton where clothbuttonid = #{clothbuttonid,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 修改服装类型 -->
+	<!-- 
+	<update id="updateAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
+    update APP_ClothModel
+		<set >
+		     <if test="modelid != null" >
+               modelid = #{modelid,jdbcType=VARCHAR},
+			</if>
+			<if test="chinesename != null" >
+               chinesename = #{chinesename,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null" >
+               englishname = #{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclass != null" >
+        	   clothclass = #{clothclass,jdbcType=VARCHAR},
+			</if>
+			<if test="clothpart != null" >
+               clothpart = #{clothpart,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null" >
+        	   url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="istrue != null" >
+        	   istrue = #{istrue,jdbcType=VARCHAR},
+			</if>
+			<if test="limitsize != null" >
+               limitsize = #{limitsize,jdbcType=VARCHAR},
+			</if>
+		</set>
+         where modelid = #{modelid,jdbcType=VARCHAR}
+	</update>
+	 -->
+	<!-- 查询全部服装按钮 -->
+	<select id="getAppClothButton" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothClass
+    where 1=1
+	</select>
+</mapper>

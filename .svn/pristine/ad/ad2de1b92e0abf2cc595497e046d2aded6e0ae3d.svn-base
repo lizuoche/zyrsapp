@@ -1,0 +1,201 @@
+$(function() {
+	doSearch();
+});
+
+// 查询全部服装类型
+function doSearch() {
+	$
+			.ajax({
+				type : "post",
+				url : "../../clothclass/getClothClass",
+				data : {
+				// "type" : "goods",
+				// "enName" : "tie"
+				},
+				dataType : "json",
+				async : false,
+				success : function(data) {
+					if (data.success) {
+						var templateList = data.result;
+
+						var tbody = $("#tbody");
+
+						tbody.empty();
+						if (templateList.length > 0) {
+							var tabhtml = "";
+							for (var i = 0; i < templateList.length; i++) {
+								var template = templateList[i];
+								var dssid = template.clothclassid;
+
+								tabhtml += "<tr>"
+										+ "<td><input type='checkbox' name='check' value='"
+										+ dssid
+										+ "'/></td>"
+										+ "<td>"
+										+ template.clothclasscnname
+										+ "</td>"
+										+ "<td>"
+										+ template.clothclassengname
+										+ "</td>"
+										+ "<td>"
+										+ template.clothclasssex
+										+ "</td>"
+										+ "<td>"
+										+ template.clothclassistrue
+										+ "</td>"
+										+ "<td>"
+										+ template.clothclasscode
+										+ "</td>"
+
+										+ "<td>"
+
+										+ ""// 暂时用不到的字段 设为空
+										+ "</td>"
+										+ "<td>"
+										+ "<div class='button-group'><a class='button border-red' onclick='select("
+										+ '"goods_'
+										+ dssid
+										+ '"'
+										+ ")'><span class='icon-trash-o'></span>确认选择</a></div>"
+
+										+ "</td>" + "</tr>"
+
+							}
+							tbody.append(tabhtml);
+						}
+					}
+				}
+			});
+}
+
+// 确认选择服装类型
+function select(ids) {
+	// 获取选中的id号
+//	if (ids == null || ids == '') {
+//		ids = '';
+//		var length = $("input[name='check']:checked").length;
+//		if (length < 1) {
+//			layer.alert("请选择信息!", {
+//				icon : 2
+//			});
+//			return false;
+//		}
+//		var el = document.getElementsByTagName('input');
+//		var len = el.length;
+//		for (var i = 0; i < len; i++) {
+//			if ((el[i].type == "checkbox") && (el[i].name == 'check')
+//					&& (el[i].checked)) {
+//				ids = ids + el[i].value + ",";
+//			}
+//		}
+//	} else {
+//		ids = ids.split('_')[1];
+//	}
+//	layer.confirm("确定要选择吗？", {
+//		btn : [ '确定', '取消' ],// 可以无限个按钮
+//
+//	}, function() {
+//		// selectSpare(ids);
+//		select1(ids);
+//	});
+	select1(ids);
+}
+
+function select1(ids) {
+	alert("111");
+//	document.getElementById("clothpartclass").value="100";
+//	parentId.append("1111");//传值到父页面
+//	var index = parent.layer.getFrameIndex(window.name);
+//	alert(index);
+//	parent.layer.close(index);
+//	document.getElementById("clothpartclass").value="100";
+//	document.getElementById("clothpartclass").value = "1111";
+//	window.close();
+	
+//	  parent.layer.close({
+//         
+////          end: function () {
+////        	  location.reload();
+////          }
+//
+//      });
+	
+ 
+//    //调用父窗口的function addPersonalCenter(){}方法，在父窗口右上角增加一个个人中心按钮  
+//    window.parent.addPersonalCenter();  
+//    // 先获取窗口索引，才能关闭窗口  
+//    var index = parent.layer.getFrameIndex(window.name);  
+//    parent.layer.close(index);  
+	layerClose(); 
+	
+}
+
+
+//点击确定按钮，先传值到父页面，然后关闭弹层
+//function layerClose(){
+//	alert("333");
+//
+//('[data-id="saveBtn"]').click(function(){  //点击确定按钮，获取弹层输入值，传入父页面  var parentId=parent.('[data-id="saveBtn"]').click(function(){  //点击确定按钮，获取弹层输入值，传入父页面  var parentId=parent.("#leftTree_1_ul");//接收值的父页面ID
+////var txt = $('[data-id="team-txt"]').val();//弹出层内获取要传出的值
+//
+//
+//var str = "1111";
+//parentId.append(str);//传值到父页面
+//
+//    //先得到当前iframe层的索引
+//    var index = parent.layer.getFrameIndex(window.name);        
+//    parent.layer.close(index); //再执行关闭   
+//});
+//
+//
+//}
+
+
+
+
+
+
+
+//点击确定按钮，先传值到父页面，然后关闭弹层
+function layerClose(){
+    alert("ids");
+	parent.$("#clothpartclass").val("11111111111111"); 
+	 
+    //--关闭 当前页面 开始-- 
+    var index = parent.layer.getFrameIndex(window.name); 
+    parent.layer.close(index); 
+
+}
+
+
+
+// 确认选择
+//function selectSpare(ids) {
+//	alert(ids);
+//	// document.getElementByIdx_x("clothpartclass").value = ids;
+//
+//	var clothpartclass = document.getElementById(ids);
+//	window.close();
+//	// parent.location.reload();
+//	// $.ajax({
+//	// // url : "../../models/delClothModels",
+//	// // url : "../../clothclass/delClothClass",
+//	// // type : "post",
+//	// // dataType : "json",
+//	// // data : {
+//	// //
+//	// // "clothpartclass" : ids
+//	// // },
+//	// async : false,
+//	//		
+//	// success : function(data) {
+//	//			
+//	// // layer.alert("删除信息成功！", {
+//	// // icon : 1
+//	// // });
+//	// window.close()
+//	// // window.location.reload();
+//	//			
+//	// },
+//	// });
+//}

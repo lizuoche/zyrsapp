@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.ClothStyleMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothStyle" >
+		<result column="clothstyleid" property="clothstyleid" jdbcType="VARCHAR" />
+		<result column="clothstylerank" property="clothstylerank" jdbcType="VARCHAR" />
+		<result column="clothstylecnname" property="clothstylecnname" jdbcType="VARCHAR" />
+		<result column="clothstyleengname" property="clothstyleengname" jdbcType="VARCHAR" />
+	    <result column="clothstylebyclothclass" property="clothstylebyclothclass" jdbcType="VARCHAR" />
+	    <result column="clothstylebyclothpart1" property="clothstylebyclothpart1" jdbcType="VARCHAR" />
+	    <result column="clothstylebyclothmodel" property="clothstylebyclothmodel" jdbcType="VARCHAR" />
+		<result column="clothstylebyclothpart2" property="clothstylebyclothpart2" jdbcType="VARCHAR" />
+		<result column="clothstylebymlmaterial" property="clothstylebymlmaterial" jdbcType="VARCHAR" />
+		<result column="clothstyleistrue" property="clothstyleistrue" jdbcType="VARCHAR" />
+		<result column="clothstyleimageurl" property="clothstyleimageurl" jdbcType="VARCHAR" />
+	    <result column="clothstyleimagename" property="clothstyleimagename" jdbcType="VARCHAR" />
+	    <result column="clothstyleimagemd5" property="clothstyleimagemd5" jdbcType="VARCHAR" />
+	    <result column="clothstyleplatform" property="clothstyleplatform" jdbcType="VARCHAR" />
+	</resultMap>
+	 
+	<sql id="Base_Column_List" >
+	       clothstyleid, 
+	       clothstylerank, 
+	       clothstylecnname, 
+	       clothstyleengname, 
+	       clothstylebyclothclass,
+	       clothstylebyclothpart1,
+	       clothstylebyclothmodel,
+	       clothstylebyclothpart2,
+	       clothstylebymlmaterial,
+	       clothstyleistrue,
+	       clothstyleimageurl,
+	       clothstyleimagename,
+	       clothstyleimagemd5,
+	       clothstyleplatform
+	</sql>
+	
+	<!-- 添加服装类型 -->
+
+	<insert id="insertAppClothStyle" parameterType="com.cn.zyrs.domain.AppClothStyle" >
+	    insert into APP_ClothStyle (clothstyleid, 
+							        clothstylerank, 
+							        clothstylecnname, 
+							        clothstyleengname, 
+							        clothstylebyclothclass,
+							        clothstylebyclothpart1,
+							        clothstylebyclothmodel,
+							        clothstylebyclothpart2,
+							        clothstylebymlmaterial,
+							        clothstyleistrue,
+							        clothstyleimageurl,
+							        clothstyleimagename,
+							        clothstyleimagemd5,
+							        clothstyleplatform)
+	      values (newid(), 
+			      #{clothstylerank,jdbcType=VARCHAR},
+			      #{clothstylecnname,jdbcType=VARCHAR},
+			      #{clothstyleengname,jdbcType=VARCHAR},
+			      #{clothstylebyclothclass,jdbcType=VARCHAR}, 
+			      #{clothstylebyclothpart1,jdbcType=VARCHAR},
+			      #{clothstylebyclothmodel,jdbcType=VARCHAR},
+			      #{clothstylebyclothpart2,jdbcType=VARCHAR},
+			      #{clothstylebymlmaterial,jdbcType=VARCHAR},
+			      #{clothstyleistrue,jdbcType=VARCHAR}, 
+			      #{clothstyleimageurl,jdbcType=VARCHAR},
+			      #{clothstyleimagename,jdbcType=VARCHAR},
+			      #{clothstyleimagemd5,jdbcType=VARCHAR},
+			      #{clothstyleplatform,jdbcType=VARCHAR}
+			      )
+	</insert>
+
+	<!-- 删除服装类型-->
+	<delete id="deleteAppClothClass" parameterType="java.lang.String" >
+        delete from APP_ClothClass where clothclassid = #{clothclassid,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 修改服装类型 -->
+	<!-- 
+	<update id="updateAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
+    update APP_ClothModel
+		<set >
+		     <if test="modelid != null" >
+               modelid = #{modelid,jdbcType=VARCHAR},
+			</if>
+			<if test="chinesename != null" >
+               chinesename = #{chinesename,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null" >
+               englishname = #{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclass != null" >
+        	   clothclass = #{clothclass,jdbcType=VARCHAR},
+			</if>
+			<if test="clothpart != null" >
+               clothpart = #{clothpart,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null" >
+        	   url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="istrue != null" >
+        	   istrue = #{istrue,jdbcType=VARCHAR},
+			</if>
+			<if test="limitsize != null" >
+               limitsize = #{limitsize,jdbcType=VARCHAR},
+			</if>
+		</set>
+         where modelid = #{modelid,jdbcType=VARCHAR}
+	</update>
+	 -->
+	<!-- 查询全部服装类型 -->
+	<select id="getAppClothClass" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothClass
+    where 1=1
+	</select>
+</mapper>

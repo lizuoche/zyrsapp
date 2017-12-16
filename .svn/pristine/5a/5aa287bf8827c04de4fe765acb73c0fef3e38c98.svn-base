@@ -1,0 +1,110 @@
+$(function() {
+	doSearch();
+});
+
+// 查询全部服装类型
+function doSearch() {
+	$.ajax({
+		type : "post",
+		url : "../../clothclass/getClothClass",
+		data : {
+		// "type" : "goods",
+		// "enName" : "tie"
+		},
+		dataType : "json",
+		async : false,
+		success : function(data) {
+			if (data.success) {
+				var templateList = data.result;
+
+				var tbody = $("#tbody");
+
+				tbody.empty();
+				if (templateList.length > 0) {
+					var tabhtml = "";
+					for (var i = 0; i < templateList.length; i++) {
+						var template = templateList[i];
+						var dssid = template.clothclassid;
+                        var clothclasscode = template.clothclasscode;
+						tabhtml += "<tr>"
+								+ "<td><input type='checkbox' name='check' value='"
+								+ dssid
+								+ "'/></td>"
+								+ "<td>"
+								+ template.clothclasscnname
+								+ "</td>"
+								+ "<td>"
+								+ template.clothclassengname
+								+ "</td>"
+								+ "<td>"
+								+ template.clothclasssex
+								+ "</td>"
+								+ "<td>"
+								+ template.clothclassistrue
+								+ "</td>"
+								+ "<td>"
+								+ template.clothclasscode
+								+ "</td>"
+
+								+ "<td>"
+
+								+ ""// 暂时用不到的字段 设为空
+								+ "</td>"
+								+ "<td>"
+								+ "<div class='button-group'><a class='button border-red' onclick='select("
+								+ '"goods_'
+								+ clothclasscode
+								+ '"'
+								+ ")'><span class='icon-trash-o'></span>确认选择1</a></div>"
+
+								+ "</td>" + "</tr>"
+
+					}
+					tbody.append(tabhtml);
+				}
+			}
+		}
+	});
+	
+}
+
+// 确认选择服装类型
+function select(ids) {
+	// 获取选中的id号
+	if (ids == null || ids == '') {
+		ids = '';
+		var length = $("input[name='check']:checked").length;
+		if (length < 1) {
+			layer.alert("请选择信息!", {
+				icon : 2
+			});
+			return false;
+		}
+		var el = document.getElementsByTagName('input');
+		var len = el.length;
+		for (var i = 0; i < len; i++) {
+			if ((el[i].type == "checkbox") && (el[i].name == 'check')
+					&& (el[i].checked)) {
+				ids = ids + el[i].value + ",";
+			}
+		}
+	} else {
+		ids = ids.split('_')[1];
+	}
+//	layer.confirm("确定要选择吗？", {
+//		btn : [ '确定', '取消' ],// 可以无限个按钮
+//
+//	}, function() {
+//		 selectSpare(ids);
+//	});
+	selectSpare(ids);
+}
+
+//确认选择
+function selectSpare(ids) {
+	window.LS.remove("ids");
+	window.LS.set("ids",ids);
+	//--关闭 当前页面 开始-- 
+    var index = parent.layer.getFrameIndex(window.name); 
+    parent.layer.close(index); 
+}

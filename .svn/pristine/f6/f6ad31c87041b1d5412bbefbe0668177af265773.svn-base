@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.ClothModelMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothModel" >
+		<!--<id column="ID" property="id" jdbcType="VARCHAR" />  -->
+		<result column="MODELID" property="modelid" jdbcType="VARCHAR" />
+		<result column="CHINESENAME" property="chinesename" jdbcType="VARCHAR" />
+		<result column="ENGLISHNAME" property="englishname" jdbcType="VARCHAR" />
+		<result column="CLOTHCLASS" property="clothclass" jdbcType="VARCHAR" />
+		<result column="CLOTHPART" property="clothpart" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="ISTRUE" property="istrue" jdbcType="VARCHAR" />
+		<result column="LIMITSIZE" property="limitsize" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+       <!-- ID, -->MODELID, CHINESENAME, ENGLISHNAME, CLOTHCLASS, CLOTHPART, URL, ISTRUE, LIMITSIZE
+	</sql>
+	<!-- 添加服装模型 -->
+	<insert id="insertAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
+	    insert into APP_ClothModel (MODELID, CHINESENAME, ENGLISHNAME, CLOTHCLASS, CLOTHPART, URL, ISTRUE, LIMITSIZE)
+	    values (newid(), #{chinesename,jdbcType=VARCHAR}, #{englishname,jdbcType=VARCHAR}, 
+	      #{clothclass,jdbcType=VARCHAR}, #{clothpart,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{istrue,jdbcType=VARCHAR}, #{limitsize,jdbcType=VARCHAR}
+	      )
+	</insert>
+	
+	<!-- 删除服装模型 -->
+	<delete id="deleteAppClothModel" parameterType="java.lang.String" >
+        delete from APP_ClothModel where modelid = #{modelid,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 修改服装模型 -->
+	<update id="updateAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
+    update APP_ClothModel
+		<set >
+		     <if test="modelid != null" >
+               modelid = #{modelid,jdbcType=VARCHAR},
+			</if>
+			<if test="chinesename != null" >
+               chinesename = #{chinesename,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null" >
+               englishname = #{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclass != null" >
+        	   clothclass = #{clothclass,jdbcType=VARCHAR},
+			</if>
+			<if test="clothpart != null" >
+               clothpart = #{clothpart,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null" >
+        	   url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="istrue != null" >
+        	   istrue = #{istrue,jdbcType=VARCHAR},
+			</if>
+			<if test="limitsize != null" >
+               limitsize = #{limitsize,jdbcType=VARCHAR},
+			</if>
+		</set>
+         where modelid = #{modelid,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 查询全部服装模型 -->
+	<select id="getAppClothModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothModel
+    where 1=1
+	</select>
+</mapper>

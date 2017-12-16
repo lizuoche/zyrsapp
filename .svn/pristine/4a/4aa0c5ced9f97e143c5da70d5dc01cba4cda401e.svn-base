@@ -1,0 +1,22 @@
+package com.cn.zyrs.service;
+
+
+import java.util.List;
+
+import com.cn.zyrs.domain.AppClothMainModel;
+
+public interface AppClothMainService {
+	
+	//添加服装主模型
+	int addAppClothMainModel(AppClothMainModel clothMainModel);
+	
+	//删除服装主类型
+	int delAppClothMainModel(String mainmodelId);
+	
+	//修改服装主模型
+	int upAppClothMainModel(AppClothMainModel clothMainModel);
+	
+	//查询所有服装主模型
+	List<AppClothMainModel> getAllAppClothMainModel(AppClothMainModel clothMainModel,String page,String di);
+
+}

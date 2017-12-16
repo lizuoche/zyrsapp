@@ -1,0 +1,72 @@
+package com.cn.zyrs.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothDict;
+import com.cn.zyrs.domain.AppClothStoreFabric;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothStoreFabricService;
+import com.cn.zyrs.utils.DynamicDataSource;
+
+@Controller
+@RequestMapping("/clothfabric")
+public class AppClothStoreFabricController {
+
+	Logger log = Logger.getLogger(AppClothStoreFabricController.class);
+	@Resource(name = "clothStoreFabricService")
+	private AppClothStoreFabricService clothStoreFabricService;
+	
+	//查询所有服装面料
+	@ResponseBody
+	@RequestMapping("/getClothStoreFabric")
+	public ResultJsonBean getAllClothModel(HttpServletRequest request,HttpServletResponse response) {
+		
+		ResultJsonBean rjb = null;
+		
+		String fabricid = request.getParameter("fabricid");
+        AppClothStoreFabric clothStoreFabric = new AppClothStoreFabric();
+		DynamicDataSource.setCustomerType(DynamicDataSource.DATA_SOURCE_2);
+        List<AppClothStoreFabric> colthClassList = this.clothStoreFabricService.getAllAppClothStoreFabric(null, null);
+		rjb = new ResultJsonBean(true, colthClassList, "1", "服装面料查询成功！");
+		return rjb;
+    }
+	
+	//根据ID查询面料
+	@ResponseBody
+	@RequestMapping("/getAllClothFabricById")
+	public ResultJsonBean getAllClothFabricById(HttpServletRequest request,HttpServletResponse response) {
+		
+		ResultJsonBean rjb = null;
+		
+		String fabricid = request.getParameter("id");
+		System.out.println(fabricid+"获取面料id +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		DynamicDataSource.setCustomerType(DynamicDataSource.DATA_SOURCE_2);
+        List<AppClothStoreFabric> colthClassList = this.clothStoreFabricService.getAllAppClothStoreFabricById(fabricid);
+		rjb = new ResultJsonBean(true, colthClassList, "1", "服装面料查询成功！");
+		return rjb;
+    }
+
+	
+	//查询所有数据字典
+//		@ResponseBody
+//		@RequestMapping("/getClothDict")
+//		public ResultJsonBean getAllClothDict(HttpServletRequest request,HttpServletResponse response) {
+//			String dictid = request.getParameter("id");
+//			String dictcode = request.getParameter("dictcode");
+//			String dictname = request.getParameter("dictname");
+//			ResultJsonBean rjb = null;
+//	        List<AppClothDict> colthDictList = this.clothDictService.getAllAppClothDict(dictid,dictcode,dictname,null,null);
+//			rjb = new ResultJsonBean(true, colthDictList, "1", "数据字典查询成功！");
+//			return rjb;
+//	    }
+	
+}

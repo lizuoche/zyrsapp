@@ -1,0 +1,68 @@
+package com.cn.zyrs.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothModel;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothModelService;
+
+@Controller
+@RequestMapping("/models")
+public class AppClothModelController {
+
+	Logger log = Logger.getLogger(AppClothModelController.class);
+	@Resource(name = "clothModelService")
+	private AppClothModelService clothModelService;
+
+	@ResponseBody
+	@RequestMapping("/addModels")
+	public ResultJsonBean addColthModel(HttpServletRequest request, HttpServletResponse response) {
+		AppClothModel clothModel = new AppClothModel();
+
+//		colthModel.setChinesename("12");
+//		colthModel.setEnglistname("333");
+//		colthModel.setClothclass("333");
+//		colthModel.setClothpart("5555");
+//		colthModel.setUrl("BBBB");
+//		colthModel.setIstrue("DDD");
+//		colthModel.setLimitsize("8888");
+
+		ResultJsonBean rjb = null;
+
+		// 入参
+		String chinesename = request.getParameter("chinesename");
+		String englistname = request.getParameter("englistname");
+		String clothclass = request.getParameter("clothclass");
+		String clothpart = request.getParameter("clothpart");
+		String url = request.getParameter("url");
+		String istrue = request.getParameter("istrue");
+		String limitsize = request.getParameter("limitsize");
+		String clothmodelfilename = request.getParameter("clothmodelfilename");
+		String md5file = request.getParameter("md5file");
+		String holdpart = request.getParameter("holdpart");
+		String byholdpart = request.getParameter("byholdpart");
+		String clothmodelsex = request.getParameter("clothmodelsex");
+		
+		clothModel.setChinesename(chinesename);
+		clothModel.setEnglistname(englistname);
+		clothModel.setClothclass(clothclass);
+		clothModel.setClothpart(clothpart);
+		clothModel.setUrl(url);
+		clothModel.setIstrue(istrue);
+		clothModel.setLimitsize(limitsize);
+		clothModel.setClothmodelfilename(clothmodelfilename);
+		clothModel.setMd5file(md5file);
+		clothModel.setHoldpart(holdpart);
+		clothModel.setByholdpart(byholdpart);
+		clothModel.setClothmodelsex(clothmodelsex);
+		clothModelService.addAppClothModel(clothModel);
+		return rjb;
+	}
+}

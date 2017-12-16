@@ -1,0 +1,107 @@
+package com.cn.zyrs.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothButton;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothButtonService;
+/**
+ * 创建标识：张祥
+ * @author Administrator
+ *
+ */
+@Controller
+@RequestMapping("/clothbutton")
+public class AppClothButtonController {
+
+	Logger log = Logger.getLogger(AppClothButtonController.class);
+	@Resource(name = "clothButtonService")
+	private AppClothButtonService clothButtonService;
+	
+	//查询所有服装按钮
+	@ResponseBody
+	@RequestMapping("/getClothButton")
+	public ResultJsonBean getClothButton(HttpServletRequest request,HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothButton colthButton = new AppClothButton();
+        List<AppClothButton> colthButtonList = this.clothButtonService.getAllAppClothButton(colthButton, null, null);
+		rjb = new ResultJsonBean(true, colthButtonList, "1", "服装按钮查询成功！");
+		return rjb;
+    }
+    
+	//增加新的服装按钮
+	@ResponseBody
+	@RequestMapping("/addClothButton")
+	public ResultJsonBean addClothButton(HttpServletRequest request, HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothButton colthButton = new AppClothButton();
+		    // 入参
+			String clothbuttoncnname = request.getParameter("clothbuttoncnname");
+			String clothbuttonengname = request.getParameter("clothbuttonengname");
+			String clothbuttonbyclothclass = request.getParameter("clothbuttonbyclothclass");
+			String clothbuttoncnpartname = request.getParameter("clothbuttoncnpartname");
+			String clothbuttonbyclothpart = request.getParameter("clothbuttonbyclothpart");
+	        String clothbuttonname = request.getParameter("clothbuttonname");
+	        String clothbuttonmorg = request.getParameter("clothbuttonmorg");
+			String clothbuttonistrue = request.getParameter("clothbuttonistrue");
+			String clothbuttonimagename = request.getParameter("clothbuttonimagename");
+			String clothbuttonimageurl = request.getParameter("clothbuttonimageurl");
+			String clothbuttonimagemd5 = request.getParameter("clothbuttonimagemd5");
+			String clothbuttonplatform = request.getParameter("clothbuttonplatform");
+	        String clothbuttonscreenresolution = request.getParameter("clothbuttonscreenresolution");
+	        
+	        colthButton.setClothbuttoncnname(clothbuttoncnname);
+	        colthButton.setClothbuttonengname(clothbuttonengname);
+	        colthButton.setClothbuttonbyclothclass(clothbuttonbyclothclass);
+	        colthButton.setClothbuttoncnpartname(clothbuttoncnpartname);
+	        colthButton.setClothbuttonbyclothpart(clothbuttonbyclothpart);
+	        colthButton.setClothbuttonname(clothbuttonname);
+	        colthButton.setClothbuttonmorg(clothbuttonmorg);
+	        colthButton.setClothbuttonistrue(clothbuttonistrue);
+	        colthButton.setClothbuttonimagename(clothbuttonimagename);
+	        colthButton.setClothbuttonimageurl(clothbuttonimageurl);
+	        colthButton.setClothbuttonimagemd5(clothbuttonimagemd5);
+	        colthButton.setClothbuttonplatform(clothbuttonplatform);
+	        colthButton.setClothbuttonscreenresolution(clothbuttonscreenresolution);
+			int res = -1;
+			res = this.clothButtonService.addAppClothButton(colthButton);
+
+			if (res == 1) {
+				log.info("新增数据类型成功！");
+				rjb = new ResultJsonBean(true, res, "1", "新增数据类型成功！");
+			} else {
+				log.error("新增数据类型失败！");
+				rjb = new ResultJsonBean(false, res, "-1", "新增数据类型失败！");
+			}
+		return rjb;
+	}
+    
+	
+	
+	//删除所选服装部位
+//	@ResponseBody
+//	@RequestMapping("/delClothPart")
+//	public ResultJsonBean delClothPart(HttpServletRequest request,HttpServletResponse response) {
+//		String buttonId = request.getParameter("ids");
+//		ResultJsonBean rjb = null;
+//        int res1 = this.clothButtonService.delAppClothButton(buttonId);
+//		if(res1==1){
+//			log.info("服装类型删除成功！");
+//			rjb = new ResultJsonBean(true, res1, "1", "服装类型删除成功！");
+//			return rjb;
+//		}else{
+//			log.error("服装类型删除失败！");
+//			rjb = new ResultJsonBean(false, res1, "-1", "服装类型删除失败！");
+//			return rjb;
+//		}
+//    }
+}

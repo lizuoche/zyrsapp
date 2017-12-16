@@ -1,0 +1,44 @@
+package com.cn.zyrs.serviceimpl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.zyrs.domain.AppClothModel;
+import com.cn.zyrs.mapper.ClothModelMapper;
+import com.cn.zyrs.service.AppClothModelService;
+
+@Service("clothModelService")
+public class AppClothModelImpl implements AppClothModelService {
+	
+	@Resource(name = "clothModelMapper")
+	private ClothModelMapper clothModelMapper;
+	
+	//添加服装模型
+    @Override
+	public int addAppClothModel(AppClothModel appClothModel) {
+    	System.out.println(appClothModel.getClothmodelcnname());
+		return this.clothModelMapper.insertAppClothModel(appClothModel);
+
+	}
+
+    //删除服装模型
+	@Override
+	public int delAppClothModel(String clothModelId) {
+		return this.clothModelMapper.deleteAppClothModel(clothModelId);
+	}
+	
+	//修改服装服装模型
+	@Override
+	public int upAppClothModel(AppClothModel appClothModel) {
+		return this.clothModelMapper.updateAppClothModel(appClothModel);
+	}
+
+	//查询所有服装模型
+	@Override
+	public List<AppClothModel> getAllAppClothModel(AppClothModel appClothModel, String page, String di) {
+		return this.clothModelMapper.getAppClothModel(appClothModel,page,di);
+	}
+}

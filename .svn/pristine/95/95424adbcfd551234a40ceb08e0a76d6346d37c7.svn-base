@@ -1,0 +1,147 @@
+package junit.service;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.junit.Test;
+
+import com.cn.zyrs.domain.AppClothClass;
+import com.cn.zyrs.domain.AppClothModel;
+import com.cn.zyrs.domain.AppClothPart;
+import com.cn.zyrs.domain.AppTerrace;
+import com.cn.zyrs.service.AppClothClassService;
+import com.cn.zyrs.service.AppClothModelService;
+import com.cn.zyrs.service.AppClothPartService;
+import com.cn.zyrs.service.AppTerraceService;
+
+import junit.test.SpringTestCase;
+
+
+public class ModelServiceTest extends SpringTestCase {
+	@Resource(name = "clothModelService")
+	private AppClothModelService clothModelService;
+	Logger logger = Logger.getLogger(ModelServiceTest.class);
+	
+	@Resource(name = "terraceService")
+	private AppTerraceService terraceService;
+//	Logger logger = Logger.getLogger(ModelServiceTest.class);
+	
+	@Resource(name = "clothClassService")
+	private AppClothClassService clothClassService;
+	
+	@Resource(name = "clothPartService")
+	private AppClothPartService clothPartService;
+    
+	//添加模型
+//	@Test  
+	public void addClothModelTest() {
+		AppClothModel colthModel = new AppClothModel();
+		 colthModel.setChinesename("vvvvvvv");
+		 colthModel.setEnglishname("tttt");
+		 colthModel.setClothclass("333");
+		 colthModel.setClothpart("5555");
+		 colthModel.setUrl("BBBB");
+		 colthModel.setIstrue("DDD");
+		 colthModel.setLimitsize("8888");
+		 
+		 colthModel.setClothmodelfilename("333");
+		 colthModel.setMd5file("5555");
+		 colthModel.setHoldpart("aaaa");
+		 colthModel.setByholdpart("dddd");;
+		 colthModel.setClothmodelsex("sdddd");
+		 clothModelService.addAppClothModel(colthModel);
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	//删除模型
+//	@Test  
+	public void delClothModelTest() {
+		clothModelService.delAppClothModel("4170E005-BE23-438D-88DB-41A0329AD610");
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	//修改模型
+//	@Test
+	public void upClothModelTest() {
+		AppClothModel colthModel = new AppClothModel();
+		colthModel.setModelid("D67673C0-0376-428C-8ED0-6A000706060B");
+		colthModel.setChinesename("1");
+		 colthModel.setEnglishname("1");
+		 colthModel.setClothclass("1");
+		 colthModel.setClothpart("1");
+		 colthModel.setUrl("1");
+		 colthModel.setIstrue("1");
+		 colthModel.setLimitsize("1");
+		
+		clothModelService.upAppClothModel(colthModel);
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	//查询全部服装模型
+//	@Test
+	public void getAllClothModelTest() {
+		AppClothModel colthModel = new AppClothModel();
+		colthModel.setModelid("D67673C0-0376-428C-8ED0-6A000706060B");
+		colthModel.setChinesename("1");
+		 colthModel.setEnglishname("1");
+		 colthModel.setClothclass("1");
+		 colthModel.setClothpart("1");
+		 colthModel.setUrl("1");
+		 colthModel.setIstrue("1");
+		 colthModel.setLimitsize("1");
+		
+		List<AppClothModel> list = clothModelService.getAllAppClothModel(colthModel,null,null);
+		for(AppClothModel aaa:list) {
+			String englistname = aaa.getEnglishname();
+			System.out.println(englistname);
+		}
+		System.out.println(list.size());
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	//----------------------------------------------------------------------------
+	//添加模型
+//	@Test  
+	public void addTerraceTest() {
+		AppTerrace terrace = new AppTerrace();
+		terrace.setTerraceid("aaa");
+		terrace.setCnterracename("安卓");
+		terrace.setEngterracename("android");
+		terraceService.addAppTerrace(terrace);
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	
+	//添加类型
+//	@Test  
+	public void addClassTest() {
+		AppClothClass clothClass = new AppClothClass();
+		clothClass.setClothclassengname("111");
+		clothClass.setClothclasscnname("aaa");
+		clothClass.setClothclasssex("男");
+		clothClassService.addAppClothClass(clothClass);
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	//添加部位
+	@Test  
+	public void addPartTest() {
+		AppClothPart clothPart = new AppClothPart();
+		clothPart.setClothpartengname("aaa");
+		clothPart.setClothpartcnname("tttt");
+		clothPart.setClothstyle("aaa");
+		clothPart.setClothoccasion("ttt");
+		clothPart.setClothclassengname("uuuu");
+		clothPartService.addAppClothPart(clothPart);
+		 logger.debug("查找结果" + "111");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+}

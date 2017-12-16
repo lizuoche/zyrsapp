@@ -3,37 +3,95 @@
 <mapper namespace="com.cn.zyrs.mapper.ClothModelMapper" >
 	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothModel" >
 		<!--<id column="ID" property="id" jdbcType="VARCHAR" />  -->
-		<result column="MODELID" property="modelid" jdbcType="VARCHAR" />
-		<result column="CHINESENAME" property="chinesename" jdbcType="VARCHAR" />
-		<result column="ENGLISHNAME" property="englishname" jdbcType="VARCHAR" />
-		<result column="CLOTHCLASS" property="clothclass" jdbcType="VARCHAR" />
-		<result column="CLOTHPART" property="clothpart" jdbcType="VARCHAR" />
-		<result column="URL" property="url" jdbcType="VARCHAR" />
-		<result column="ISTRUE" property="istrue" jdbcType="VARCHAR" />
-		<result column="LIMITSIZE" property="limitsize" jdbcType="VARCHAR" />
-		<result column="CLOTHMODELFILENAME" property="clothmodelfilename" jdbcType="VARCHAR" />
-		<result column="MD5FILE" property="md5file" jdbcType="VARCHAR" />
-		<result column="HOLDPART" property="holdpart" jdbcType="VARCHAR" />
-		<result column="BYHOLDPART" property="byholdpart" jdbcType="VARCHAR" />
-		<result column="CLOTHMODELSEX" property="clothmodelsex" jdbcType="VARCHAR" />
+		<result column="clothmodelid" property="clothmodelid" jdbcType="VARCHAR" />
+		<result column="clothmodelcnname" property="clothmodelcnname" jdbcType="VARCHAR" />
+		<result column="clothmodelengname" property="clothmodelengname" jdbcType="VARCHAR" />
+		<result column="clothmodelbyclothclass" property="clothmodelbyclothclass" jdbcType="VARCHAR" />
+		<result column="clothmodelbyclothpart" property="clothmodelbyclothpart" jdbcType="VARCHAR" />
+		<result column="clothmodelbyplatform" property="clothmodelbyplatform" jdbcType="VARCHAR" />
+		<result column="clothmodelname" property="clothmodelname" jdbcType="VARCHAR" />
+		<result column="clothmodelfilename" property="clothmodelfilename" jdbcType="VARCHAR" />
+		<result column="clothmodelurl" property="clothmodelurl" jdbcType="VARCHAR" />
+		<result column="clothmodelistrue" property="clothmodelistrue" jdbcType="VARCHAR" />
+		<result column="clothmodeldifferentedpart" property="clothmodeldifferentedpart" jdbcType="VARCHAR" />
+		<result column="clothmodeldifferentspart" property="clothmodeldifferentspart" jdbcType="VARCHAR" />
+		<result column="clothmodelmd5" property="clothmodelmd5" jdbcType="VARCHAR" />
+		<result column="clothmodelimagename" property="clothmodelimagename" jdbcType="VARCHAR" />
+		<result column="clothmodelimageurl" property="clothmodelimageurl" jdbcType="VARCHAR" />
+		<result column="clothmodelimagemd5" property="clothmodelimagemd5" jdbcType="VARCHAR" />
+		<result column="clothmodelauthor" property="clothmodelauthor" jdbcType="VARCHAR" />
+		<result column="clothmodeluploadname" property="clothmodeluploadname" jdbcType="VARCHAR" />
+		<result column="clothmodelversion" property="clothmodelversion" jdbcType="VARCHAR" />
 		
 	</resultMap>
 	
 	<sql id="Base_Column_List" >
-       <!-- ID, -->MODELID, CHINESENAME, ENGLISHNAME, CLOTHCLASS, CLOTHPART, URL, ISTRUE, LIMITSIZE, CLOTHMODELFILENAME, MD5FILE, HOLDPART, BYHOLDPART, CLOTHMODELSEX
+		       clothmodelid, 
+		       clothmodelcnname, 
+		       clothmodelengname,
+		       clothmodelbyclothclass, 
+		       clothmodelbyclothpart, 
+		       clothmodelbyplatform, 
+		       clothmodelname, 
+		       clothmodelfilename, 
+		       clothmodelurl, 
+		       clothmodelistrue, 
+		       clothmodeldifferentedpart, 
+		       clothmodeldifferentspart,
+		       clothmodelmd5,
+		       clothmodelimagename,
+		       clothmodelimageurl,
+		       clothmodelimagemd5,
+		       clothmodelauthor,
+		       clothmodeluploadname,
+		       clothmodelversion
 	</sql>
 	<!-- 添加服装模型 -->
 	<insert id="insertAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
-	    insert into APP_ClothModel (MODELID, CHINESENAME, ENGLISHNAME, CLOTHCLASS, CLOTHPART, URL, ISTRUE, LIMITSIZE, CLOTHMODELFILENAME, MD5FILE, HOLDPART, BYHOLDPART, CLOTHMODELSEX)
-	    values (newid(), #{chinesename,jdbcType=VARCHAR}, #{englishname,jdbcType=VARCHAR}, 
-	      #{clothclass,jdbcType=VARCHAR}, #{clothpart,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{istrue,jdbcType=VARCHAR}, #{limitsize,jdbcType=VARCHAR},
-	      #{clothmodelfilename,jdbcType=VARCHAR}, #{md5file,jdbcType=VARCHAR}, #{holdpart,jdbcType=VARCHAR}, #{byholdpart,jdbcType=VARCHAR}, #{clothmodelsex,jdbcType=VARCHAR}
-	      )
+	    insert into APP_ClothModel (clothmodelid, 
+	                                clothmodelcnname, 
+	                                clothmodelengname, 
+	                                clothmodelbyclothclass,
+	                                clothmodelbyclothpart, 
+							        clothmodelbyplatform,
+							        clothmodelname, 
+							        clothmodelfilename, 
+							        clothmodelurl, 
+							        clothmodelistrue, 
+							        clothmodeldifferentedpart, 
+							        clothmodeldifferentspart,
+							        clothmodelmd5,
+							        clothmodelimagename,
+							        clothmodelimageurl,
+							        clothmodelimagemd5,
+							        clothmodelauthor,
+							        clothmodeluploadname,
+							        clothmodelversion)
+						    values (newid(), 
+						           #{clothmodelcnname,jdbcType=VARCHAR},
+						           #{clothmodelengname,jdbcType=VARCHAR}, 
+						           #{clothmodelbyclothclass,jdbcType=VARCHAR}, 
+						           #{clothmodelbyclothpart,jdbcType=VARCHAR}, 
+						           #{clothmodelbyplatform,jdbcType=VARCHAR},
+						           #{clothmodelfilename,jdbcType=VARCHAR}, 
+						           #{clothmodelfilename,jdbcType=VARCHAR}, 
+						           #{clothmodelurl,jdbcType=VARCHAR}, 
+						           #{clothmodelistrue,jdbcType=VARCHAR}, 
+						           #{clothmodeldifferentedpart,jdbcType=VARCHAR},
+						           #{clothmodeldifferentspart,jdbcType=VARCHAR},
+						           #{clothmodelmd5,jdbcType=VARCHAR}, 
+						           #{clothmodelimagename,jdbcType=VARCHAR}, 
+						           #{clothmodelimageurl,jdbcType=VARCHAR}, 
+						           #{clothmodelimagemd5,jdbcType=VARCHAR}, 
+						           #{clothmodelauthor,jdbcType=VARCHAR}, 
+						           #{clothmodeluploadname,jdbcType=VARCHAR},
+						           #{clothmodelversion,jdbcType=VARCHAR}
+	        )
 	</insert>
 	
 	<!-- 删除服装模型 -->
 	<delete id="deleteAppClothModel" parameterType="java.lang.String" >
-        delete from APP_ClothModel where modelid = #{modelid,jdbcType=VARCHAR}
+        delete from APP_ClothModel where clothmodelid = #{clothmodelid,jdbcType=VARCHAR}
 	</delete>
 	
 	<!-- 修改服装模型 -->
@@ -74,5 +132,15 @@
 		<include refid="Base_Column_List" />
     from APP_ClothModel
     where 1=1
+	</select>
+	
+	<!-- 查询全部服装模型byId -->
+	<select id="getAppClothModelById" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothModel" >
+	select 
+		<include refid="Base_Column_List" />
+    from APP_ClothModel where 1=1
+   <if test="clothmodelid != null and clothmodelid!=''">
+	   and clothmodelid = #{clothmodelid,jdbcType=VARCHAR}
+	</if>
 	</select>
 </mapper>

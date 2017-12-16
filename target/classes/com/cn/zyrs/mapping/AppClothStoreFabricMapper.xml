@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.ClothStoreFabricMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothStoreFabric" >
+		<result column="fabricid" property="fabricid" jdbcType="VARCHAR" />
+		<result column="fabriccode" property="fabriccode" jdbcType="VARCHAR" />
+		<result column="fabricname" property="fabricname" jdbcType="VARCHAR" />
+		<result column="brandid" property="brandid" jdbcType="VARCHAR" />
+		<result column="categoryid" property="categoryid" jdbcType="VARCHAR" />
+	    <result column="styleid" property="styleid" jdbcType="VARCHAR" />
+	    <result column="model" property="model" jdbcType="VARCHAR" />
+		<result column="standard" property="standard" jdbcType="VARCHAR" />
+		<result column="color" property="color" jdbcType="VARCHAR" />
+		<result column="composition" property="composition" jdbcType="VARCHAR" />
+		<result column="washingnotice" property="washingnotice" jdbcType="VARCHAR" />
+	    <result column="width" property="width" jdbcType="VARCHAR" />
+	    <result column="weight" property="weight" jdbcType="VARCHAR" />
+	    <result column="yarn" property="yarn" jdbcType="VARCHAR" />
+	    <result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+		<result column="bomno" property="bomno" jdbcType="VARCHAR" />
+		<result column="factoryid" property="factoryid" jdbcType="VARCHAR" />
+		<result column="channel" property="channel" jdbcType="VARCHAR" />
+	    <result column="purchaseprice" property="purchaseprice" jdbcType="VARCHAR" />
+	    <result column="isvalid" property="isvalid" jdbcType="VARCHAR" />
+		<result column="companyid" property="companyid" jdbcType="VARCHAR" />
+		<result column="picture" property="picture" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="isstorewarn" property="isstorewarn" jdbcType="VARCHAR" />
+	    <result column="normal_image" property="normal_image" jdbcType="VARCHAR" />
+	    <result column="big_image" property="big_image" jdbcType="VARCHAR" />
+	    <result column="small_image" property="small_image" jdbcType="VARCHAR" />
+	    <result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="createdate" property="createdate" jdbcType="VARCHAR" />
+		<result column="modifier" property="modifier" jdbcType="VARCHAR" />
+		<result column="modifydate" property="modifydate" jdbcType="VARCHAR" />
+		<result column="padenable" property="padenable" jdbcType="VARCHAR" />
+		
+		<result column="brandname" property="brandname" jdbcType="VARCHAR" />
+		<result column="clothfabricfilename" property="clothfabricfilename" jdbcType="VARCHAR" />
+	    <result column="clothfabricfileurl" property="clothfabricfileurl" jdbcType="VARCHAR" />
+	    <result column="clothfabricfilemd5" property="clothfabricfilemd5" jdbcType="VARCHAR" />
+	    <result column="clothfabricfiletools" property="clothfabricfiletools" jdbcType="VARCHAR" />
+		<result column="clothfabricimagename" property="clothfabricimagename" jdbcType="VARCHAR" />
+		<result column="clothfabricimageurl" property="clothfabricimageurl" jdbcType="VARCHAR" />
+		<result column="clothfabricimagemd5" property="clothfabricimagemd5" jdbcType="VARCHAR" />
+		<result column="clothfabricimagesize" property="clothfabricimagesize" jdbcType="VARCHAR" />
+		<result column="clothfabriciscomplete" property="clothfabriciscomplete" jdbcType="VARCHAR" />
+	</resultMap>
+	 
+	<sql id="Base_Column_List" >
+	        F.fabricid,
+			F.fabriccode,
+			F.fabricname,
+			F.brandid,
+			F.categoryid,
+			F.styleid,
+			F.model,
+			F.standard,
+			F.color,
+			F.composition,
+			F.washingnotice,
+			F.width,
+			F.weight,
+			F.yarn,
+			F.unit,
+			F.price,
+			F.bomno,
+			F.factoryid,
+			F.channel,
+			F.purchaseprice,
+			F.isvalid,
+			F.companyid,
+			F.picture,
+			F.version,
+			F.isstorewarn,
+			F.normal_image,
+			F.big_image,
+			F.small_image,
+			F.creater,
+			F.createdate,
+			F.modifier,
+			F.modifydate,
+			F.padenable,
+			B.brandname,
+			F.clothfabricfilename,
+	        F.clothfabricfileurl,
+	        F.clothfabricfilemd5,
+	        F.clothfabricfiletools,
+		    F.clothfabricimagename,
+		    F.clothfabricimageurl,
+		    F.clothfabricimagemd5,
+		    F.clothfabricimagesize,
+		    F.clothfabriciscomplete
+	</sql>
+
+	
+	<!-- 修改服装类型 -->
+	<!-- 
+	<update id="updateAppClothModel" parameterType="com.cn.zyrs.domain.AppClothModel" >
+    update APP_ClothModel
+		<set >
+		     <if test="modelid != null" >
+               modelid = #{modelid,jdbcType=VARCHAR},
+			</if>
+			<if test="chinesename != null" >
+               chinesename = #{chinesename,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null" >
+               englishname = #{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclass != null" >
+        	   clothclass = #{clothclass,jdbcType=VARCHAR},
+			</if>
+			<if test="clothpart != null" >
+               clothpart = #{clothpart,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null" >
+        	   url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="istrue != null" >
+        	   istrue = #{istrue,jdbcType=VARCHAR},
+			</if>
+			<if test="limitsize != null" >
+               limitsize = #{limitsize,jdbcType=VARCHAR},
+			</if>
+		</set>
+         where modelid = #{modelid,jdbcType=VARCHAR}
+	</update>
+	 -->
+	<!-- 查询全部服装按钮 -->
+	<!--<select id="getAppClothStoreFabric" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothStoreFabric" >  -->
+	<select id="getAppClothStoreFabric" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from STORE_FABRIC F,BASE_BRAND B where F.BRANDID=B.BRANDCODE
+    </select>
+    
+    <!-- 根据条件查询所有对应的面料-->
+	<select id="getAppClothStoreFabricBy" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothStoreFabric" >
+	    select 
+			<include refid="Base_Column_List" />
+	    from STORE_FABRIC F,BASE_BRAND B where F.BRANDID=B.BRANDCODE
+	    	<if test="fabriccode!= null and fabriccode!=''">
+	              and fabriccode = #{fabriccode,jdbcType=VARCHAR}
+			</if>
+	         <if test="brandname!= null and brandname!=''">
+	              and brandname = #{brandname,jdbcType=VARCHAR}
+			</if>
+			<if test="clothfabriciscomplete !=null and clothfabriciscomplete!=''" >
+	              and clothfabriciscomplete = #{clothfabriciscomplete,jdbcType=VARCHAR}
+			</if>
+			
+	</select>
+	
+	<!-- 查询全部服装按钮byId -->
+	<select id="getAppClothStoreFabricById" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothStoreFabric" >
+	select 
+		<include refid="Base_Column_List" />
+    from STORE_FABRIC F,BASE_BRAND B where F.BRANDID=B.BRANDCODE
+   <if test="fabricid != null and fabricid!=''">
+	   and fabricid = #{fabricid,jdbcType=VARCHAR}
+	</if>
+	</select>
+	
+	
+	<!-- 修改服装面料 -->
+	<update id="updateAppClothStoreFabric" parameterType="com.cn.zyrs.domain.AppClothStoreFabric" >
+         update STORE_FABRIC set clothfabricfilename = #{clothfabricfilename,jdbcType=VARCHAR},
+                                clothfabricfileurl = #{clothfabricfileurl,jdbcType=VARCHAR},
+                                clothfabricfilemd5 = #{clothfabricfilemd5,jdbcType=VARCHAR} ,
+                                clothfabricfiletools = #{clothfabricfiletools,jdbcType=VARCHAR},
+                                clothfabricimagename = #{clothfabricimagename,jdbcType=VARCHAR},
+                                clothfabricimageurl = #{clothfabricimageurl,jdbcType=VARCHAR}, 
+                                clothfabricimagemd5 = #{clothfabricimagemd5,jdbcType=VARCHAR},
+                                clothfabricimagesize = #{clothfabricimagesize,jdbcType=VARCHAR},
+                                clothfabriciscomplete = 'T' where fabricid = #{fabricid,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -1,0 +1,20 @@
+package com.cn.zyrs.service;
+
+
+import java.util.List;
+
+import com.cn.zyrs.domain.AppClothStoreFabric;
+
+public interface AppClothStoreFabricService {
+	//添加按钮
+//	int addAppClothStoreFabric(AppClothStoreFabric clothStoreFabric);
+	
+	//删除按钮
+//	int delAppClothStoreFabric(String buttonId);
+	
+	//修改面料
+	int upAppClothStoreFabric(AppClothStoreFabric clothStoreFabric);
+	
+	//查询所有面料
+	List<AppClothStoreFabric> getAllAppClothStoreFabric(AppClothStoreFabric clothStoreFabric,String page,String di);
+}

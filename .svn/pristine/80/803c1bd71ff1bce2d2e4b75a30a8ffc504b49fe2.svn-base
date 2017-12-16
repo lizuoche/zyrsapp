@@ -1,0 +1,21 @@
+package com.cn.zyrs.mapper;
+
+import java.util.List;
+
+import com.cn.zyrs.domain.AppClothClass;
+
+public interface ClothButtonMapper {
+ 
+    //添加类型
+    int insertAppClothButton(AppClothClass appClothClass);
+    
+    //删除类型
+    int deleteAppClothButton(String clothClassId);
+    
+    //修改服装类型
+    int updateAppClothButton(AppClothClass appClothClass);
+    
+    //查询全部服装类型
+    List<AppClothClass> getAppClothButton(AppClothClass appClothClass, String page, String di);
+
+}

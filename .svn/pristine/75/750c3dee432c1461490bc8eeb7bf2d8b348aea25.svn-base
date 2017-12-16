@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.ClothQuantityBodySizeMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothQuantityBodySize" >
+	    <result column="LtxxId" property="ltxxid" jdbcType="VARCHAR" />
+		<result column="ChineseName" property="chinesename" jdbcType="VARCHAR" />
+		<result column="EnglishName" property="englishname" jdbcType="VARCHAR" />
+		<result column="BodyStyle" property="bodystyle" jdbcType="VARCHAR" />
+		<result column="Sex" property="sex" jdbcType="VARCHAR" />
+	</resultMap>
+	 
+	<sql id="Base_Column_List" >
+       LtxxId,ChineseName, EnglishName, BodyStyle, Sex
+	</sql>
+	
+	<!-- 添加量体信息 -->
+    <insert id="insertAppClothQuantityBodySize" parameterType="com.cn.zyrs.domain.AppClothQuantityBodySize" >
+	    insert into APP_ClothQuantityBodySize (LtxxId, ChineseName, EnglishName, BodyStyle,Sex)
+	    values (newid(),#{chinesename,jdbcType=VARCHAR}, #{englishname,jdbcType=VARCHAR},#{bodystyle,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 删除量体信息-->
+	<!-- 
+	<delete id="deleteAppClothQuantityBodySize" parameterType="java.lang.String" >
+        delete from APP_ClothQuantityBodySize where ltxxid = #{ltxxid,jdbcType=VARCHAR}
+	</delete>
+	 -->
+	<!-- 修改量体信息 -->
+	<!-- 
+	<update id="updateAppClothClass" parameterType="com.cn.zyrs.domain.AppClothClass" >
+    update APP_ClothClass
+		<set >
+		     <if test="clothclasscnname != null" >
+               clothclasscnname = #{clothclasscnname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclassengname != null" >
+               clothclassengname = #{clothclassengname,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclasssex != null" >
+               clothclasssex = #{clothclasssex,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclassistrue != null" >
+        	   clothclassistrue = #{clothclassistrue,jdbcType=VARCHAR},
+			</if>
+			<if test="clothclasscode != null" >
+               clothclasscode = #{clothclasscode,jdbcType=VARCHAR}
+			</if>
+		</set>
+         where clothclassid = #{clothclassid,jdbcType=VARCHAR}
+	</update>
+	 -->
+	<!-- 
+	<update id="updateAppClothClass" parameterType="com.cn.zyrs.domain.AppClothClass" >
+        update APP_ClothClass set  clothclasscnname = #{clothclasscnname,jdbcType=VARCHAR}, 
+                                   clothclassengname = #{clothclassengname,jdbcType=VARCHAR}, 
+                                   clothclasssex = #{clothclasssex,jdbcType=VARCHAR},
+                                   clothclassistrue = #{clothclassistrue,jdbcType=VARCHAR},
+                                   clothclasscode = #{clothclasscode,jdbcType=VARCHAR} where clothclassid = #{clothclassid,jdbcType=VARCHAR}
+    </update>
+	
+	 -->
+	 
+	<!-- 查询量体信息 -->
+	<!--  -->
+	<select id="getAppClothQuantityBodySize" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothQuantityBodySize where 1=1
+	</select>
+	
+	<!-- 查询量体信息byId -->
+	<!-- 
+	<select id="getAppClothClassById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_ClothClass
+    where 1=1 and clothclassid = #{clothclassid,jdbcType=VARCHAR}
+	</select>
+	 -->
+</mapper>

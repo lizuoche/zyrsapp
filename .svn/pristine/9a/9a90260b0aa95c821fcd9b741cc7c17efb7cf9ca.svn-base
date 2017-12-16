@@ -1,0 +1,108 @@
+package com.cn.zyrs.domain;
+
+public class AppClothMainModel {
+	// 服装主模型id
+	private String clothmainmodelid;
+	// 服装主模型中文名
+	private String clothmainmodelcnname;
+	// 服装主模型英文名
+	private String clothmainmodelengname;
+	// 服装主模型所属服装类型
+	private String cmmbyclothclass;
+	// 服装部位
+	private String cmmbodystyle;
+	// 服装主模型所属平台
+	private String cmmplatform;
+	// 服装主模型名称
+	private String clothmainmodelname;
+	// 服装主模型url
+	private String clothmainmodelurl;
+	// 服装主模型md5
+	private String clothmainmodelmd5;
+	// 服装主模型图片名称
+	private String cmmimagename;
+	// 服装主模型图片url
+	private String cmmimageurl;
+	// 服装主模型md5
+	private String cmmimagemd5;
+	// 服装主模型是否可用
+	private String cmmistrue;
+	public String getClothmainmodelid() {
+		return clothmainmodelid;
+	}
+	public void setClothmainmodelid(String clothmainmodelid) {
+		this.clothmainmodelid = clothmainmodelid;
+	}
+	public String getClothmainmodelcnname() {
+		return clothmainmodelcnname;
+	}
+	public void setClothmainmodelcnname(String clothmainmodelcnname) {
+		this.clothmainmodelcnname = clothmainmodelcnname;
+	}
+	public String getClothmainmodelengname() {
+		return clothmainmodelengname;
+	}
+	public void setClothmainmodelengname(String clothmainmodelengname) {
+		this.clothmainmodelengname = clothmainmodelengname;
+	}
+	public String getCmmbyclothclass() {
+		return cmmbyclothclass;
+	}
+	public void setCmmbyclothclass(String cmmbyclothclass) {
+		this.cmmbyclothclass = cmmbyclothclass;
+	}
+	public String getCmmbodystyle() {
+		return cmmbodystyle;
+	}
+	public void setCmmbodystyle(String cmmbodystyle) {
+		this.cmmbodystyle = cmmbodystyle;
+	}
+	public String getCmmplatform() {
+		return cmmplatform;
+	}
+	public void setCmmplatform(String cmmplatform) {
+		this.cmmplatform = cmmplatform;
+	}
+	public String getClothmainmodelname() {
+		return clothmainmodelname;
+	}
+	public void setClothmainmodelname(String clothmainmodelname) {
+		this.clothmainmodelname = clothmainmodelname;
+	}
+	public String getClothmainmodelurl() {
+		return clothmainmodelurl;
+	}
+	public void setClothmainmodelurl(String clothmainmodelurl) {
+		this.clothmainmodelurl = clothmainmodelurl;
+	}
+	public String getClothmainmodelmd5() {
+		return clothmainmodelmd5;
+	}
+	public void setClothmainmodelmd5(String clothmainmodelmd5) {
+		this.clothmainmodelmd5 = clothmainmodelmd5;
+	}
+	public String getCmmimagename() {
+		return cmmimagename;
+	}
+	public void setCmmimagename(String cmmimagename) {
+		this.cmmimagename = cmmimagename;
+	}
+	public String getCmmimageurl() {
+		return cmmimageurl;
+	}
+	public void setCmmimageurl(String cmmimageurl) {
+		this.cmmimageurl = cmmimageurl;
+	}
+	public String getCmmimagemd5() {
+		return cmmimagemd5;
+	}
+	public void setCmmimagemd5(String cmmimagemd5) {
+		this.cmmimagemd5 = cmmimagemd5;
+	}
+	public String getCmmistrue() {
+		return cmmistrue;
+	}
+	public void setCmmistrue(String cmmistrue) {
+		this.cmmistrue = cmmistrue;
+	}
+}

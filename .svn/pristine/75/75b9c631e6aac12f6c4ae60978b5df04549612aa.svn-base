@@ -1,0 +1,71 @@
+package com.cn.zyrs.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothDict;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothDictService;
+
+@Controller
+@RequestMapping("/dicts")
+public class AppClothDictController {
+
+	Logger log = Logger.getLogger(AppClothDictController.class);
+	@Resource(name = "clothDictService")
+	private AppClothDictService clothDictService;
+    
+	//增加新的服装模型
+	@ResponseBody
+	@RequestMapping("/addDicts")
+	public ResultJsonBean addColthModel(HttpServletRequest request, HttpServletResponse response) {
+		AppClothDict clothDict = new AppClothDict();
+        ResultJsonBean rjb = null;
+	        // 入参
+			String dictcode = request.getParameter("dictcode");
+			String dictname = request.getParameter("dictname");
+			
+			clothDict.setDictcode(dictcode);
+			clothDict.setDictname(dictname);
+			clothDictService.addAppClothDict(clothDict);
+		return rjb;
+	}
+    
+	//查询所有数据字典
+	@ResponseBody
+	@RequestMapping("/getClothDicts")
+	public ResultJsonBean getAllClothDict(HttpServletRequest request,HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothDict clothDict = new AppClothDict();
+        List<AppClothDict> colthDictList = this.clothDictService.getAllAppClothDict(clothDict,null,null);
+		rjb = new ResultJsonBean(true, colthDictList, "1", "服装模型查询成功！");
+		return rjb;
+    }
+//	
+//	//删除所选服装模型
+//	@ResponseBody
+//	@RequestMapping("/delClothModels")
+//	public ResultJsonBean delClothModel(HttpServletRequest request,HttpServletResponse response) {
+//		String modelId = request.getParameter("ids");
+//		System.out.println(modelId+"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+//		ResultJsonBean rjb = null;
+//        int res1 = this.clothModelService.delAppClothModel(modelId);
+//		if(res1==1){
+//			log.info("服装模型删除成功！");
+//			rjb = new ResultJsonBean(true, res1, "1", "服装模型删除成功！");
+//			return rjb;
+//		}else{
+//			log.error("服装模型删除失败！");
+//			rjb = new ResultJsonBean(false, res1, "-1", "服装模型删除失败！");
+//			return rjb;
+//		}
+//    }
+}

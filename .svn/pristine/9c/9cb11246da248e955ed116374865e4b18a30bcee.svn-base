@@ -1,0 +1,60 @@
+package com.cn.zyrs.domain;
+
+public class AppClothModel {
+	private String modelid;
+	private String chinesename;
+    private String englishname;
+    private String clothclass;
+    private String clothpart;
+    private String url;
+    private String istrue;
+    private String limitsize;
+	public String getModelid() {
+		return modelid;
+	}
+	public void setModelid(String modelid) {
+		this.modelid = modelid;
+	}
+	public String getChinesename() {
+		return chinesename;
+	}
+	public void setChinesename(String chinesename) {
+		this.chinesename = chinesename;
+	}
+	public String getEnglistname() {
+		return englishname;
+	}
+	public void setEnglistname(String englistname) {
+		this.englishname = englistname;
+	}
+	public String getClothclass() {
+		return clothclass;
+	}
+	public void setClothclass(String clothclass) {
+		this.clothclass = clothclass;
+	}
+	public String getClothpart() {
+		return clothpart;
+	}
+	public void setClothpart(String clothpart) {
+		this.clothpart = clothpart;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getIstrue() {
+		return istrue;
+	}
+	public void setIstrue(String istrue) {
+		this.istrue = istrue;
+	}
+	public String getLimitsize() {
+		return limitsize;
+	}
+	public void setLimitsize(String limitsize) {
+		this.limitsize = limitsize;
+	}
+}

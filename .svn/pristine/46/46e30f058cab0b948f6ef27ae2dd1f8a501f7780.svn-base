@@ -1,0 +1,8 @@
+package com.cn.zyrs.domain;
+
+public class AppTerrace {
+	private String terraceid;
+	private String cnterracename;
+    private String engterracename;
+   
+}

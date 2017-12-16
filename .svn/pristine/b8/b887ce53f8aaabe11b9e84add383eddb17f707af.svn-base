@@ -1,0 +1,90 @@
+package com.cn.zyrs.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothPart;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothPartService;
+
+@Controller
+@RequestMapping("/clothpart")
+public class AppClothPartController {
+
+	Logger log = Logger.getLogger(AppClothClassController.class);
+	@Resource(name = "clothPartService")
+	private AppClothPartService clothPartService;
+	
+	//查询所有服装部位
+	@ResponseBody
+	@RequestMapping("/getClothPart")
+	public ResultJsonBean getClothPart(HttpServletRequest request,HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothPart colthPart = new AppClothPart();
+        List<AppClothPart> colthPartList = this.clothPartService.getAllAppClothPart(colthPart, null, null);
+		rjb = new ResultJsonBean(true, colthPartList, "1", "服装模型查询成功！");
+		return rjb;
+    }
+    
+	//增加新的服装部位
+	@ResponseBody
+	@RequestMapping("/addClothPart")
+	public ResultJsonBean addClothPart(HttpServletRequest request, HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothPart colthPart = new AppClothPart();
+		
+	        // 入参
+			String clothpartcnname = request.getParameter("clothpartcnname");
+			String clothpartengname = request.getParameter("clothpartengname");
+			String clothpartstyle = request.getParameter("clothpartstyle");
+			String clothpartoccasion = request.getParameter("clothpartoccasion");
+			String clothpartclass = request.getParameter("clothpartclass");
+	        String clothpartcode = request.getParameter("clothpartcode");
+			colthPart.setClothpartcnname(clothpartcnname);
+			colthPart.setClothpartengname(clothpartengname);
+			colthPart.setClothpartstyle(clothpartstyle);
+			colthPart.setClothpartoccasion(clothpartoccasion);
+			colthPart.setClothpartclass(clothpartclass);
+			colthPart.setClothpartcode(clothpartcode);
+			int res = -1;
+			res = this.clothPartService.addAppClothPart(colthPart);
+
+			if (res == 1) {
+				log.info("新增数据类型成功！");
+				rjb = new ResultJsonBean(true, res, "1", "新增数据类型成功！");
+			} else {
+				log.error("新增数据类型失败！");
+				rjb = new ResultJsonBean(false, res, "-1", "新增数据类型失败！");
+			}
+		return rjb;
+	}
+    
+	
+	
+	//删除所选服装类型
+//	@ResponseBody
+//	@RequestMapping("/delClothClass")
+//	public ResultJsonBean delClothClass(HttpServletRequest request,HttpServletResponse response) {
+//		String clothClassId = request.getParameter("ids");
+//		System.out.println(clothClassId+"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+//		ResultJsonBean rjb = null;
+//        int res1 = this.clothPartService.delAppClothClass(clothClassId);
+//		if(res1==1){
+//			log.info("服装类型删除成功！");
+//			rjb = new ResultJsonBean(true, res1, "1", "服装类型删除成功！");
+//			return rjb;
+//		}else{
+//			log.error("服装类型删除失败！");
+//			rjb = new ResultJsonBean(false, res1, "-1", "服装类型删除失败！");
+//			return rjb;
+//		}
+//    }
+}

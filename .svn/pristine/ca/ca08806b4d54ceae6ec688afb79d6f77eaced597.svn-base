@@ -1,0 +1,21 @@
+package com.cn.zyrs.domain;
+
+public class AppClothButton {
+	//服装按钮id
+	private String clothbuttonid;
+	//中文名
+	private String clothbuttoncnname;
+	//英文名
+	private String clothbuttonengname;
+	//服装按钮所属服装类型
+	private String clothbuttonbyclothclass;
+	//按钮部位名称(手工录入)
+	private String clothbuttonpartname;
+	//按钮名
+	private String clothbuttonname;
+	//服装类型是否可用
+	private String clothclassistrue;
+	//服装类型编码
+	private String clothclasscode;
+	//按钮图片尺寸
+}

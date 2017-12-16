@@ -2,23 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cn.zyrs.mapper.ClothPartMapper" >
 	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppClothPart" >
-		<!--<id column="ID" property="id" jdbcType="VARCHAR" />  -->
-		<result column="CLOTHPARTID" property="clothpartid" jdbcType="VARCHAR" />
-		<result column="CLOTHPARTENGNAME" property="clothpartengname" jdbcType="VARCHAR" />
-		<result column="CLOTHPARTCNNAME" property="clothpartcnname" jdbcType="VARCHAR" />
-		<result column="CLOTHSTYLE" property="clothstyle" jdbcType="VARCHAR" />
-		<result column="CLOTHOCCASION" property="clothoccasion" jdbcType="VARCHAR" />
-		<result column="CLOTHCLASSENGNAME" property="clothclassengname" jdbcType="VARCHAR" />
+		<result column="clothpartid" property="clothpartid" jdbcType="VARCHAR" />
+		<result column="clothpartcnname" property="clothpartcnname" jdbcType="VARCHAR" />
+		<result column="clothpartengname" property="clothpartengname" jdbcType="VARCHAR" />
+		<result column="clothpartstyle" property="clothpartstyle" jdbcType="VARCHAR" />
+		<result column="clothpartoccasion" property="clothpartoccasion" jdbcType="VARCHAR" />
+		<result column="clothpartclass" property="clothpartclass" jdbcType="VARCHAR" />
+		<result column="clothpartcode" property="clothpartcode" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<sql id="Base_Column_List" >
-       <!-- ID, -->CLOTHPARTID, CLOTHPARTENGNAME, CLOTHPARTCNNAME, CLOTHSTYLE, CLOTHOCCASION, CLOTHCLASSENGNAME
+       clothpartid, clothpartcnname, clothpartengname, clothpartstyle, clothpartoccasion,clothpartclass, clothpartcode
 	</sql>
 	<!-- 添加服装部位-->
 	<insert id="insertAppClothPart" parameterType="com.cn.zyrs.domain.AppClothPart" >
-	    insert into APP_ClothPart (CLOTHPARTID, CLOTHPARTENGNAME, CLOTHPARTCNNAME, CLOTHSTYLE, CLOTHOCCASION, CLOTHCLASSENGNAME)
-	    values (newid(), #{clothpartengname,jdbcType=VARCHAR}, #{clothpartcnname,jdbcType=VARCHAR}, 
-	      #{clothstyle,jdbcType=VARCHAR}, #{clothoccasion,jdbcType=VARCHAR}, #{clothclassengname,jdbcType=VARCHAR}
+	    insert into APP_ClothPart (clothpartid, clothpartcnname, clothpartengname, clothpartstyle, clothpartoccasion, clothpartclass,clothpartcode)
+	    values (newid(), 
+	            #{clothpartcnname,jdbcType=VARCHAR}, 
+	            #{clothpartengname,jdbcType=VARCHAR}, 
+			    #{clothpartstyle,jdbcType=VARCHAR}, 
+			    #{clothpartoccasion,jdbcType=VARCHAR}, 
+			    #{clothpartclass,jdbcType=VARCHAR}, 
+			    #{clothpartcode,jdbcType=VARCHAR}
 	     )
 	</insert>
 	
@@ -67,4 +72,28 @@
     from APP_ClothPart
     where 1=1
 	</select>
+	
+	<!-- 查询全部服装部位byId -->
+	<select id="getAppClothPartById" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothPart" >
+	select 
+		<include refid="Base_Column_List" />
+    from APP_ClothPart where 1=1
+   <if test="clothpartid != null and clothpartid!=''">
+	   and clothpartid = #{clothpartid,jdbcType=VARCHAR}
+	</if>
+	</select>
+	
+	
+	
+	<!-- 查询全部服装模型byId -->
+	<!-- 
+	<select id="getAppClothModelById" resultMap="BaseResultMap" parameterType="com.cn.zyrs.domain.AppClothModel" >
+	select 
+		<include refid="Base_Column_List" />
+    from APP_ClothModel where 1=1
+   <if test="clothmodelid != null and clothmodelid!=''">
+	   and clothmodelid = #{clothmodelid,jdbcType=VARCHAR}
+	</if>
+	</select>
+	 -->
 </mapper>

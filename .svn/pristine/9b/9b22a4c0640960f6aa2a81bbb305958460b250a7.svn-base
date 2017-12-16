@@ -1,0 +1,82 @@
+package com.cn.zyrs.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cn.zyrs.domain.AppClothClass;
+import com.cn.zyrs.domain.AppClothModel;
+import com.cn.zyrs.domain.ResultJsonBean;
+import com.cn.zyrs.service.AppClothClassService;
+
+@Controller
+@RequestMapping("/clothclass")
+public class AppClothClassController {
+
+	Logger log = Logger.getLogger(AppClothClassController.class);
+	@Resource(name = "clothClassService")
+	private AppClothClassService clothClassService;
+	
+	//查询所有服装类型
+	@ResponseBody
+	@RequestMapping("/getClothClass")
+	public ResultJsonBean getAllClothModel(HttpServletRequest request,HttpServletResponse response) {
+		ResultJsonBean rjb = null;
+		AppClothClass colthClass = new AppClothClass();
+        List<AppClothClass> colthClassList = this.clothClassService.getAllAppClothClass(colthClass, null, null);
+		rjb = new ResultJsonBean(true, colthClassList, "1", "服装模型查询成功！");
+		return rjb;
+    }
+    
+	//增加新的服装模型
+	@ResponseBody
+	@RequestMapping("/addClothClass")
+	public ResultJsonBean addClothClass(HttpServletRequest request, HttpServletResponse response) {
+		AppClothClass colthClass = new AppClothClass();
+        ResultJsonBean rjb = null;
+	        // 入参
+			String clothclasscnname = request.getParameter("clothclasscnname");
+			String clothclassengname = request.getParameter("clothclassengname");
+			String clothclasssex = request.getParameter("clothclasssex");
+			String clothclassistrue = request.getParameter("clothclassistrue");
+			String clothclasscode = request.getParameter("clothclasscode");
+	
+			
+			colthClass.setClothclasscnname(clothclasscnname);
+			colthClass.setClothclassengname(clothclassengname);
+			colthClass.setClothclasssex(clothclasssex);
+			colthClass.setClothclassistrue(clothclassistrue);
+			colthClass.setClothclasscode(clothclasscode);
+			
+			clothClassService.addAppClothClass(colthClass);
+		return rjb;
+	}
+    
+	
+	
+	//删除所选服装模型
+//	@ResponseBody
+//	@RequestMapping("/delClothModels")
+//	public ResultJsonBean delClothModel(HttpServletRequest request,HttpServletResponse response) {
+//		String modelId = request.getParameter("ids");
+//		System.out.println(modelId+"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+//		ResultJsonBean rjb = null;
+//        int res1 = this.clothModelService.delAppClothModel(modelId);
+//		if(res1==1){
+//			log.info("服装模型删除成功！");
+//			rjb = new ResultJsonBean(true, res1, "1", "服装模型删除成功！");
+//			return rjb;
+//		}else{
+//			log.error("服装模型删除失败！");
+//			rjb = new ResultJsonBean(false, res1, "-1", "服装模型删除失败！");
+//			return rjb;
+//		}
+//    }
+}

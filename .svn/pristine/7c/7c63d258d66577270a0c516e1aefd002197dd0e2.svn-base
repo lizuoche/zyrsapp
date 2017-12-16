@@ -1,0 +1,21 @@
+package com.cn.zyrs.service;
+
+
+import java.util.List;
+
+import com.cn.zyrs.domain.AppClothModel;
+import com.cn.zyrs.domain.AppTerrace;
+
+public interface AppTerraceService {
+	//添加平台
+	int addAppClothModel(AppTerrace terrace);
+	
+	//删除平台
+	int delAppClothModel(String terrace);
+	
+	//修改平台
+	int upAppClothModel(AppTerrace terrace);
+	
+	//查询平台
+	List<AppClothModel> getAllAppClothModel(AppTerrace terrace,String page,String di);
+}

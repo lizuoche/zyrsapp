@@ -1,0 +1,30 @@
+$(function() {
+	doSearch();
+});
+
+//获取要修改的数据字典ID
+function doSearch() {
+	alert("获取要修改的数据字典id");
+	$.ajax({
+		type : "post",
+		url : "clothdict/getAllClothDictById",
+		data : {
+			"id" : id,
+		},
+		dataType : "json",
+		async : false,
+		success : function(data) {
+			if (data.success) {
+				var res = data.result[0];
+				var tbody = $("#tbody");
+				tbody.empty();
+				var tabhtml = "";
+				$("#dictid").val(res.dictid);
+				$("#dictcode").val(res.dictcode);
+				$("#dictname").val(res.dictname);
+		        tbody.append(tabhtml);
+			}
+		}
+	});
+}
+
