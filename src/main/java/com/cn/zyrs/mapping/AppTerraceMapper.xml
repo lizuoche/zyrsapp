@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.TerraceMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppTerrace" >
+		<!--<id column="ID" property="id" jdbcType="VARCHAR" />  -->
+		<result column="TERRACEID" property="terraceid" jdbcType="VARCHAR" />
+		<result column="CNTERRACENAME" property="cnterracename" jdbcType="VARCHAR" />
+		<result column="ENGTERRACENAME" property="engterracename" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+       <!-- ID, -->
+        TERRACEID, CNTERRACENAME, ENGTERRACENAME
+	</sql>
+	<!-- 添加适用平台 -->
+	<insert id="insertTerrace" parameterType="com.cn.zyrs.domain.AppTerrace" >
+	    insert into APP_Terrace (terraceid, cnterracename, engterracename)
+	    values 
+	         (newid(), #{cnterracename,jdbcType=VARCHAR}, #{engterracename,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 删除适用平台 -->
+	<delete id="deleteAppTerrace" parameterType="java.lang.String" >
+        delete from APP_Terrace where terraceid = #{terraceid,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 修改适用平台 -->
+	<update id="updateAppTerrace" parameterType="com.cn.zyrs.domain.AppTerrace" >
+    update APP_Terrace
+		<set >
+		     <if test="modelid != null" >
+               terraceid = #{terraceid,jdbcType=VARCHAR},
+			</if>
+			<if test="chinesename != null" >
+               cnterracename = #{cnterracename,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null" >
+               engterracename = #{engterracename,jdbcType=VARCHAR},
+			</if>
+			
+		</set>
+         where terraceid = #{terraceid,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 查询全部适用平台 -->
+	<select id="getAppTerrace" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from APP_Terrace
+    where 1=1
+	</select>
+</mapper>

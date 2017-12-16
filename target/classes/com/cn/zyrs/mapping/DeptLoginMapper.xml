@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zyrs.mapper.DeptLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.zyrs.domain.AppDepartMent" >
+    <id column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="DEPTCODE" property="deptcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPTID, DEPTNAME, DEPTCODE
+  </sql>
+  <select id="getDeptLoginInfo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from US_DepartMent
+    where DEPTNAME = #{deptname,jdbcType=VARCHAR} and DEPTCODE = #{deptcode,jdbcType=VARCHAR}
+  </select>
+</mapper>

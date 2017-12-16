@@ -1,0 +1,43 @@
+package com.cn.zyrs.serviceimpl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.zyrs.domain.AppClothPart;
+import com.cn.zyrs.mapper.ClothPartMapper;
+import com.cn.zyrs.service.AppClothPartService;
+
+@Service("clothPartService")
+public class AppClothPartImpl implements AppClothPartService {
+	
+	@Resource(name = "clothPartMapper")
+	private ClothPartMapper clothPartMapper;
+	
+	//添加服装部位
+    @Override
+	public int addAppClothPart(AppClothPart appClothPart) {
+		return this.clothPartMapper.insertAppClothPart(appClothPart);
+
+	}
+
+    //删除服装部位
+	@Override
+	public int delAppClothPart(String clothPartId) {
+		return this.clothPartMapper.deleteAppClothPart(clothPartId);
+	}
+	
+	//修改服装服装部位
+	@Override
+	public int upAppClothPart(AppClothPart appClothPart) {
+		return this.clothPartMapper.updateAppClothPart(appClothPart);
+	}
+
+	//查询所有服装部位
+	@Override
+	public List<AppClothPart> getAllAppClothPart(AppClothPart appClothPart, String page, String di) {
+		return this.clothPartMapper.getAppClothPart(appClothPart,page,di);
+	}
+}

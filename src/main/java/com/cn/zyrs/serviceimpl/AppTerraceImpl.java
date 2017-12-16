@@ -1,0 +1,44 @@
+package com.cn.zyrs.serviceimpl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.zyrs.domain.AppTerrace;
+import com.cn.zyrs.mapper.TerraceMapper;
+import com.cn.zyrs.service.AppTerraceService;
+
+@Service("terraceService")
+public class AppTerraceImpl implements AppTerraceService {
+	
+	@Resource(name = "terraceMapper")
+	private TerraceMapper terraceMapper;
+	
+	//添加适用平台
+    @Override
+	public int addAppTerrace(AppTerrace appTerrace) {
+    	System.out.println(appTerrace.getCnterracename()+"ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		return this.terraceMapper.insertTerrace(appTerrace);
+
+	}
+
+    //删除适用平台
+	@Override
+	public int delAppTerrace(String terraceId) {
+		return this.terraceMapper.deleteTerrace(terraceId);
+	}
+	
+	//修改适用平台
+	@Override
+	public int upAppTerrace(AppTerrace appTerrace) {
+		return this.terraceMapper.updateTerrace(appTerrace);
+	}
+
+	//查询适用平台
+	@Override
+	public List<AppTerrace> getAllAppTerrace(AppTerrace appTerrace, String page, String di) {
+		return this.terraceMapper.getAppTerrace(appTerrace,page,di);
+	}
+}
